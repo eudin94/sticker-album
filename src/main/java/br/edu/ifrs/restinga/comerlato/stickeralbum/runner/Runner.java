@@ -27,7 +27,7 @@ public class Runner {
         return args -> {
 
             final Sticker sticker = new Sticker(
-                    FALSE, FALSE, "1.0", "D"
+                    FALSE, FALSE, "1.0", "Dummy"
             );
             final Album album = new Album(
                     "Soccer Album", "Dummylands", 1980, List.of("Dummers"), "New 1.0"
