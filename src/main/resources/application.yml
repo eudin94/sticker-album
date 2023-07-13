@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  servlet.context-path: '/sticker-album'
+  compression.enabled: true
+  error.include-message: always
+
+spring:
+  application.name: sticker-album
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sticker-album?createDatabaseIfNotExist=true
+    username: root
+    password: senha123
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
