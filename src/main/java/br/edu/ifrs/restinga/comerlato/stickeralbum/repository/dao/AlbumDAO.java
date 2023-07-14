@@ -1,10 +1,13 @@
 package br.edu.ifrs.restinga.comerlato.stickeralbum.repository.dao;
 
 import br.edu.ifrs.restinga.comerlato.stickeralbum.model.entity.Album;
+import br.edu.ifrs.restinga.comerlato.stickeralbum.model.entity.Sticker;
 import br.edu.ifrs.restinga.comerlato.stickeralbum.repository.dao.generic.GenericCrudRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AlbumDAO extends GenericCrudRepository<Album, Long> {
@@ -17,4 +20,6 @@ public interface AlbumDAO extends GenericCrudRepository<Album, Long> {
 
     List<Album> findAllBySpecialStickersGreaterThanOrderBySpecialStickersAsc(final Integer specialQuantity);
 
+    @Query("SELECT a FROM Album a WHERE ?1 IN a.stickerList")
+    Optional<Album> getAlbumBySticker(final Sticker sticker);
 }
