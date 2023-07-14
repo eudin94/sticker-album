@@ -2,8 +2,8 @@ package br.edu.ifrs.restinga.comerlato.stickeralbum.runner;
 
 import br.edu.ifrs.restinga.comerlato.stickeralbum.model.entity.Album;
 import br.edu.ifrs.restinga.comerlato.stickeralbum.model.entity.Sticker;
-import br.edu.ifrs.restinga.comerlato.stickeralbum.repository.AlbumRepository;
-import br.edu.ifrs.restinga.comerlato.stickeralbum.repository.StickerRepository;
+import br.edu.ifrs.restinga.comerlato.stickeralbum.repository.jpa.AlbumRepository;
+import br.edu.ifrs.restinga.comerlato.stickeralbum.repository.jpa.StickerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;

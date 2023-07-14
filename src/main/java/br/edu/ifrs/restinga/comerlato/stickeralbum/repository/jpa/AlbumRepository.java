@@ -1,4 +1,4 @@
-package br.edu.ifrs.restinga.comerlato.stickeralbum.repository;
+package br.edu.ifrs.restinga.comerlato.stickeralbum.repository.jpa;
 
 import br.edu.ifrs.restinga.comerlato.stickeralbum.model.entity.Album;
 import org.springframework.data.jpa.repository.JpaRepository;
