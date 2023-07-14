@@ -1,4 +1,4 @@
-package br.edu.ifrs.restinga.comerlato.stickeralbum.runner;
+package br.edu.ifrs.restinga.comerlato.stickeralbum.runner.jpa;
 
 import br.edu.ifrs.restinga.comerlato.stickeralbum.model.entity.Album;
 import br.edu.ifrs.restinga.comerlato.stickeralbum.model.entity.Sticker;
@@ -17,13 +17,13 @@ import static java.lang.Boolean.FALSE;
 @Slf4j
 @Component
 @AllArgsConstructor
-public class Runner {
+public class JPARunner {
 
     private StickerRepository stickerRepository;
     private AlbumRepository albumRepository;
 
     @Bean
-    private CommandLineRunner run() {
+    private CommandLineRunner runJPA() {
         return args -> {
 
             final Sticker sticker = new Sticker(
