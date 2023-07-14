@@ -11,7 +11,7 @@ public interface AlbumDAO extends GenericCrudRepository<Album, Long> {
 
     List<Album> findAllByNameOrderByNameAsc(final String name);
 
-    List<Album> findAllByHostCountryContainingOrderByHostCountryAsc(final String country);
+    List<Album> findAllByHostCountryContainingOrderByNameAsc(final String country);
 
     List<Album> findAllByYearGreaterThanOrderByYearAsc(final Integer year);
 
