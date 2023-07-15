@@ -15,6 +15,7 @@ import java.util.Random;
 
 import static br.edu.ifrs.restinga.comerlato.stickeralbum.model.util.EntityFactory.createAlbum;
 import static br.edu.ifrs.restinga.comerlato.stickeralbum.model.util.EntityFactory.createSticker;
+import static br.edu.ifrs.restinga.comerlato.stickeralbum.model.util.constants.StringConstants.*;
 
 @Slf4j
 @Component
@@ -48,15 +49,34 @@ public class DAORunner {
             albumDAO.findAll().forEach(album -> log.info("SAVED ALBUM\n" + album));
             stickerDAO.findAll().forEach(sticker -> log.info("SAVED STICKER\n" + sticker));
 
-            final var albumName = albums.get(random.nextInt(albums.size())).getName();
-            log.warn("ALBUM-findAllByNameOrderByNameAsc[" + albumName + "]");
-            albumDAO.findAllByNameOrderByNameAsc(albumName).forEach(
+
+            log.warn("ALBUM-findAllByNameOrderByNameAsc[" + ALBUM_NAME_1 + "]");
+            albumDAO.findAllByNameOrderByNameAsc(ALBUM_NAME_1).forEach(
                     album -> log.info("ID = " + album.getId() + "\n" + album)
             );
 
-            final var hostCountry = albums.get(random.nextInt(albums.size())).getHostCountry();
-            log.warn("ALBUM-findAllByHostCountryContainingOrderByNameAsc[" + hostCountry + "]");
-            albumDAO.findAllByHostCountryContainingOrderByNameAsc(hostCountry).forEach(
+            log.warn("ALBUM-findAllByNameOrderByNameAsc[" + ALBUM_NAME_2 + "]");
+            albumDAO.findAllByNameOrderByNameAsc(ALBUM_NAME_2).forEach(
+                    album -> log.info("ID = " + album.getId() + "\n" + album)
+            );
+
+            log.warn("ALBUM-findAllByNameOrderByNameAsc[" + ALBUM_NAME_3 + "]");
+            albumDAO.findAllByNameOrderByNameAsc(ALBUM_NAME_3).forEach(
+                    album -> log.info("ID = " + album.getId() + "\n" + album)
+            );
+
+            log.warn("ALBUM-findAllByHostCountryContainingOrderByNameAsc[" + HOST_COUNTRY_1 + "]");
+            albumDAO.findAllByHostCountryContainingOrderByNameAsc(HOST_COUNTRY_1).forEach(
+                    album -> log.info("ID = " + album.getId() + "\n" + album)
+            );
+
+            log.warn("ALBUM-findAllByHostCountryContainingOrderByNameAsc[" + HOST_COUNTRY_2 + "]");
+            albumDAO.findAllByHostCountryContainingOrderByNameAsc(HOST_COUNTRY_2).forEach(
+                    album -> log.info("ID = " + album.getId() + "\n" + album)
+            );
+
+            log.warn("ALBUM-findAllByHostCountryContainingOrderByNameAsc[" + HOST_COUNTRY_3 + "]");
+            albumDAO.findAllByHostCountryContainingOrderByNameAsc(HOST_COUNTRY_3).forEach(
                     album -> log.info("ID = " + album.getId() + "\n" + album)
             );
 
@@ -83,23 +103,53 @@ public class DAORunner {
                     sticker -> log.info("ID = " + sticker.getId() + "\n" + sticker)
             );
 
-            final var randomIndex = random.nextInt(stickers.size());
-
-            final var team = stickers.get(randomIndex).getTeam();
-            log.warn("STICKER-findAllByTeamContainingOrderByNameDesc[" + team + "]");
-            stickerDAO.findAllByTeamContainingOrderByNameDesc(team).forEach(
+            log.warn("STICKER-findAllByTeamContainingOrderByNameDesc[" + STICKER_TEAM_1 + "]");
+            stickerDAO.findAllByTeamContainingOrderByNameDesc(STICKER_TEAM_1).forEach(
                     sticker -> log.info("ID = " + sticker.getId() + "\n" + sticker)
             );
 
-            final var position = stickers.get(randomIndex).getPosition();
-            log.warn("STICKER-findAllByPositionContainingOrderByNameDesc[" + position + "]");
-            stickerDAO.findAllByPositionContainingOrderByNameDesc(position).forEach(
+            log.warn("STICKER-findAllByTeamContainingOrderByNameDesc[" + STICKER_TEAM_2 + "]");
+            stickerDAO.findAllByTeamContainingOrderByNameDesc(STICKER_TEAM_2).forEach(
                     sticker -> log.info("ID = " + sticker.getId() + "\n" + sticker)
             );
 
-            log.warn("STICKER-findAllByPositionContainingAndTeamContainingOrderByTeamDesc[" + position + ", " + team + "]");
+            log.warn("STICKER-findAllByTeamContainingOrderByNameDesc[" + STICKER_TEAM_3 + "]");
+            stickerDAO.findAllByTeamContainingOrderByNameDesc(STICKER_TEAM_3).forEach(
+                    sticker -> log.info("ID = " + sticker.getId() + "\n" + sticker)
+            );
+
+            log.warn("STICKER-findAllByPositionContainingOrderByNameDesc[" + POSITION_1 + "]");
+            stickerDAO.findAllByPositionContainingOrderByNameDesc(POSITION_1).forEach(
+                    sticker -> log.info("ID = " + sticker.getId() + "\n" + sticker)
+            );
+
+            log.warn("STICKER-findAllByPositionContainingOrderByNameDesc[" + POSITION_2 + "]");
+            stickerDAO.findAllByPositionContainingOrderByNameDesc(POSITION_1).forEach(
+                    sticker -> log.info("ID = " + sticker.getId() + "\n" + sticker)
+            );
+
+            log.warn("STICKER-findAllByPositionContainingOrderByNameDesc[" + POSITION_3 + "]");
+            stickerDAO.findAllByPositionContainingOrderByNameDesc(POSITION_1).forEach(
+                    sticker -> log.info("ID = " + sticker.getId() + "\n" + sticker)
+            );
+
+            log.warn("STICKER-findAllByPositionContainingAndTeamContainingOrderByTeamDesc[" + POSITION_1 + ", " + STICKER_TEAM_1 + "]");
             stickerDAO.findAllByPositionContainingAndTeamContainingOrderByTeamDesc(
-                    stickers.get(randomIndex).getPosition(), stickers.get(randomIndex).getTeam()
+                    POSITION_1, STICKER_TEAM_1
+            ).forEach(
+                    sticker -> log.info("ID = " + sticker.getId() + "\n" + sticker)
+            );
+
+            log.warn("STICKER-findAllByPositionContainingAndTeamContainingOrderByTeamDesc[" + POSITION_2 + ", " + STICKER_TEAM_2 + "]");
+            stickerDAO.findAllByPositionContainingAndTeamContainingOrderByTeamDesc(
+                    POSITION_2, STICKER_TEAM_2
+            ).forEach(
+                    sticker -> log.info("ID = " + sticker.getId() + "\n" + sticker)
+            );
+
+            log.warn("STICKER-findAllByPositionContainingAndTeamContainingOrderByTeamDesc[" + POSITION_3 + ", " + STICKER_TEAM_3 + "]");
+            stickerDAO.findAllByPositionContainingAndTeamContainingOrderByTeamDesc(
+                    POSITION_3, STICKER_TEAM_3
             ).forEach(
                     sticker -> log.info("ID = " + sticker.getId() + "\n" + sticker)
             );
@@ -111,8 +161,8 @@ public class DAORunner {
             );
 
             albums.forEach(album -> {
-                log.warn("STICKER-getStickersByAlbumAndTeam[" + album.getId() + "." + album.getName() + ", " + team + "]");
-                stickerDAO.getStickersByAlbumAndTeam(album, team).forEach(
+                log.warn("STICKER-getStickersByAlbumAndTeam[" + album.getId() + "." + album.getName() + ", " + STICKER_TEAM_1 + "]");
+                stickerDAO.getStickersByAlbumAndTeam(album, STICKER_TEAM_1).forEach(
                         sticker -> log.info("ID = " + sticker.getId() + "\n" + sticker)
                 );
             });
