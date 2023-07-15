@@ -111,8 +111,8 @@ public class DAORunner {
             );
 
             albums.forEach(album -> {
-                log.warn("STICKER-getStickersByAlbumAndTeam[" + album.getId() + "." + album.getName() + "]");
-                stickerDAO.getStickersByAlbumAndTeam(album, stickers.get(randomIndex).getTeam()).forEach(
+                log.warn("STICKER-getStickersByAlbumAndTeam[" + album.getId() + "." + album.getName() + ", " + team + "]");
+                stickerDAO.getStickersByAlbumAndTeam(album, team).forEach(
                         sticker -> log.info("\n" + sticker)
                 );
             });
