@@ -2,24 +2,34 @@ package br.edu.ifrs.restinga.comerlato.stickeralbum.model.util;
 
 import br.edu.ifrs.restinga.comerlato.stickeralbum.model.entity.Album;
 import br.edu.ifrs.restinga.comerlato.stickeralbum.model.entity.Sticker;
-import com.github.javafaker.Faker;
 
 import java.util.List;
+import java.util.Random;
+
+import static br.edu.ifrs.restinga.comerlato.stickeralbum.model.util.FakerManager.initializeAlbumFields;
+import static br.edu.ifrs.restinga.comerlato.stickeralbum.model.util.FakerManager.initializeStickerFields;
+import static br.edu.ifrs.restinga.comerlato.stickeralbum.model.util.constants.StringConstants.*;
+import static java.util.Objects.isNull;
 
 public class EntityFactory {
 
-    private static final Faker faker = new Faker();
+    private static final Random random = new Random();
 
     public static Album createAlbum() {
+        if (isNull(ALBUM_NAME_1)) initializeAlbumFields();
         try {
             var album = new Album(
-                    getName(10, 100),
-                    faker.country().name(),
-                    faker.number().numberBetween(1900, 2023),
-                    List.of(faker.gameOfThrones().city(), faker.lordOfTheRings().location(), faker.elderScrolls().city()),
-                    getName(4, 10)
+                    getAlbumName(),
+                    getHostCountry(),
+                    random.nextInt(1900, 2024),
+                    List.of(
+                            TEAM_NAME_1,
+                            TEAM_NAME_2,
+                            TEAM_NAME_3
+                    ),
+                    getCover()
             );
-            album.setSpecialStickers(faker.number().numberBetween(0, 5));
+            album.setSpecialStickers(random.nextInt(0, 5));
             return album;
         } catch (IllegalArgumentException e) {
             return createAlbum();
@@ -27,44 +37,74 @@ public class EntityFactory {
     }
 
     public static Sticker createSticker() {
+        if (isNull(VERSION)) initializeStickerFields();
         try {
             var sticker = new Sticker(
-                    faker.random().nextBoolean(),
-                    faker.random().nextBoolean(),
-                    faker.app().version(),
-                    getName(3, 100)
+                    random.nextBoolean(),
+                    random.nextBoolean(),
+                    VERSION,
+                    getStickerName()
             );
-            sticker.setTeam(getName(1, 3));
-            sticker.setPosition(getName(1, 3));
+            sticker.setTeam(getStickerTeam());
+            sticker.setPosition(getPosition());
             return sticker;
         } catch (IllegalArgumentException e) {
             return createSticker();
         }
     }
 
-    private static String getName(final int min, final int max) {
-        var name = "";
 
-        final var opt = faker.random().nextInt(1, 7);
+    private static String getAlbumName() {
+        final var seed = random.nextInt(1, 4);
+        return switch (seed) {
+            case 1 -> ALBUM_NAME_1;
+            case 2 -> ALBUM_NAME_2;
+            default -> ALBUM_NAME_3;
+        };
+    }
 
-        switch (opt) {
-            case 1 -> name = faker.lordOfTheRings().character();
-            case 2 -> name = faker.gameOfThrones().character();
-            case 3 -> name = faker.rickAndMorty().character();
-            case 4 -> name = faker.dragonBall().character();
-            case 5 -> name = faker.programmingLanguage().name();
-            case 6 -> name = faker.pokemon().name();
-            default -> name = faker.superhero().name();
-        }
+    private static String getHostCountry() {
+        final var seed = random.nextInt(1, 4);
+        return switch (seed) {
+            case 1 -> HOST_COUNTRY_1;
+            case 2 -> HOST_COUNTRY_2;
+            default -> HOST_COUNTRY_3;
+        };
+    }
 
-        while (name.length() < min) {
-            name = name.concat(" " + getName(1, max / 2));
-        }
+    private static String getCover() {
+        final var seed = random.nextInt(1, 4);
+        return switch (seed) {
+            case 1 -> COVER_1;
+            case 2 -> COVER_2;
+            default -> COVER_3;
+        };
+    }
 
-        if (name.length() > max) {
-            name = name.substring(0, max);
-        }
+    private static String getStickerName() {
+        final var seed = random.nextInt(1, 4);
+        return switch (seed) {
+            case 1 -> STICKER_NAME_1;
+            case 2 -> STICKER_NAME_2;
+            default -> STICKER_NAME_3;
+        };
+    }
 
-        return name.toUpperCase();
+    private static String getStickerTeam() {
+        final var seed = random.nextInt(1, 4);
+        return switch (seed) {
+            case 1 -> STICKER_TEAM_1;
+            case 2 -> STICKER_TEAM_2;
+            default -> STICKER_TEAM_3;
+        };
+    }
+
+    private static String getPosition() {
+        final var seed = random.nextInt(1, 4);
+        return switch (seed) {
+            case 1 -> POSITION_1;
+            case 2 -> POSITION_2;
+            default -> POSITION_3;
+        };
     }
 }

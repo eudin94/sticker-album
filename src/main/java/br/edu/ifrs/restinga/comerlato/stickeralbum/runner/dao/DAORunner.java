@@ -32,11 +32,11 @@ public class DAORunner {
             final var stickers = new ArrayList<Sticker>();
             final var albums = new ArrayList<Album>();
 
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < 30; i++) {
                 stickers.add(createSticker());
             }
 
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 10; i++) {
                 albums.add(createAlbum());
             }
 
@@ -51,36 +51,36 @@ public class DAORunner {
             final var albumName = albums.get(random.nextInt(albums.size())).getName();
             log.warn("ALBUM-findAllByNameOrderByNameAsc[" + albumName + "]");
             albumDAO.findAllByNameOrderByNameAsc(albumName).forEach(
-                    album -> log.info("\n" + album)
+                    album -> log.info("\nID = " + album.getId() + "\n" + album)
             );
 
             final var hostCountry = albums.get(random.nextInt(albums.size())).getHostCountry();
             log.warn("ALBUM-findAllByHostCountryContainingOrderByNameAsc[" + hostCountry + "]");
             albumDAO.findAllByHostCountryContainingOrderByNameAsc(hostCountry).forEach(
-                    album -> log.info("\n" + album)
+                    album -> log.info("\nID = " + album.getId() + "\n" + album)
             );
 
             final var year = random.nextInt(1900, 1970);
             log.warn("ALBUM-findAllByYearGreaterThanOrderByYearAsc[" + year + "]");
             albumDAO.findAllByYearGreaterThanOrderByYearAsc(year).forEach(
-                    album -> log.info("\n" + album)
+                    album -> log.info("\nID = " + album.getId() + "\n" + album)
             );
 
             final var specialQuantity = random.nextInt(1, 5);
             log.warn("ALBUM-findAllBySpecialStickersGreaterThanOrderBySpecialStickersAsc[" + specialQuantity + "]");
             albumDAO.findAllBySpecialStickersGreaterThanOrderBySpecialStickersAsc(specialQuantity).forEach(
-                    album -> log.info("\n" + album)
+                    album -> log.info("\nID = " + album.getId() + "\n" + album)
             );
 
             final var sampleSticker = stickers.get(random.nextInt(stickers.size()));
             log.warn("ALBUM-getAlbumBySticker[" + sampleSticker.getId() + "." + sampleSticker.getName() + "]");
             albumDAO.getAlbumBySticker(sampleSticker).ifPresent(
-                    album -> log.info("\n" + album)
+                    album -> log.info("\nID = " + album.getId() + "\n" + album)
             );
 
             log.warn("STICKER-findAllByRareTrue");
             stickerDAO.findAllByRareTrue().forEach(
-                    sticker -> log.info("\n" + sticker)
+                    sticker -> log.info("\nID = " + sticker.getId() + "\n" + sticker)
             );
 
             final var randomIndex = random.nextInt(stickers.size());
@@ -88,32 +88,32 @@ public class DAORunner {
             final var team = stickers.get(randomIndex).getTeam();
             log.warn("STICKER-findAllByTeamContainingOrderByNameDesc[" + team + "]");
             stickerDAO.findAllByTeamContainingOrderByNameDesc(team).forEach(
-                    sticker -> log.info("\n" + sticker)
+                    sticker -> log.info("\nID = " + sticker.getId() + "\n" + sticker)
             );
 
             final var position = stickers.get(randomIndex).getPosition();
             log.warn("STICKER-findAllByPositionContainingOrderByNameDesc[" + position + "]");
             stickerDAO.findAllByPositionContainingOrderByNameDesc(position).forEach(
-                    sticker -> log.info("\n" + sticker)
+                    sticker -> log.info("\nID = " + sticker.getId() + "\n" + sticker)
             );
 
             log.warn("STICKER-findAllByPositionContainingAndTeamContainingOrderByTeamDesc[" + position + ", " + team + "]");
             stickerDAO.findAllByPositionContainingAndTeamContainingOrderByTeamDesc(
                     stickers.get(randomIndex).getPosition(), stickers.get(randomIndex).getTeam()
             ).forEach(
-                    sticker -> log.info("\n" + sticker)
+                    sticker -> log.info("\nID = " + sticker.getId() + "\n" + sticker)
             );
 
             final var sampleAlbum = albums.get(random.nextInt(albums.size()));
             log.warn("STICKER-getStickersByAlbum[" + sampleAlbum.getId() + "." + sampleAlbum.getName() + "]");
             stickerDAO.getStickersByAlbum(sampleAlbum).forEach(
-                    sticker -> log.info("\n" + sticker)
+                    sticker -> log.info("\nID = " + sticker.getId() + "\n" + sticker)
             );
 
             albums.forEach(album -> {
                 log.warn("STICKER-getStickersByAlbumAndTeam[" + album.getId() + "." + album.getName() + ", " + team + "]");
                 stickerDAO.getStickersByAlbumAndTeam(album, team).forEach(
-                        sticker -> log.info("\n" + sticker)
+                        sticker -> log.info("\nID = " + sticker.getId() + "\n" + sticker)
                 );
             });
         };
