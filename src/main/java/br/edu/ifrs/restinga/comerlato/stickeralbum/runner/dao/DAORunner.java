@@ -116,9 +116,6 @@ public class DAORunner {
                         sticker -> log.info("STICKER-getStickersByAlbum\n" + sticker)
                 );
             });
-
-        }
-
-                ;
+        };
     }
 }
