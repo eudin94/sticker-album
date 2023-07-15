@@ -37,7 +37,7 @@ public class Album {
     @Column(nullable = false)
     private Integer year;
 
-    @ElementCollection
+    @ElementCollection(fetch = EAGER)
     private @NotNull @NotEmpty List<@Size(min = 3, max = 100) String> teams;
 
     @Length(min = 4, max = 10)

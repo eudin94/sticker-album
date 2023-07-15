@@ -20,6 +20,6 @@ public interface AlbumDAO extends GenericCrudRepository<Album, Long> {
 
     List<Album> findAllBySpecialStickersGreaterThanOrderBySpecialStickersAsc(final Integer specialQuantity);
 
-    @Query("SELECT a FROM Album a JOIN Sticker s ON s.album.id = a.id")
+    @Query("SELECT a FROM Album a JOIN Sticker s ON s.album.id = a.id WHERE s = ?1")
     Optional<Album> getAlbumBySticker(final Sticker sticker);
 }

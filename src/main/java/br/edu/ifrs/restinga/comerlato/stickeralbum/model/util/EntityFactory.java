@@ -12,13 +12,15 @@ public class EntityFactory {
 
     public static Album createAlbum() {
         try {
-            return new Album(
+            var album = new Album(
                     faker.programmingLanguage().name(),
                     faker.country().name(),
                     faker.number().numberBetween(1900, 2023),
                     List.of(faker.gameOfThrones().city(), faker.lordOfTheRings().location(), faker.elderScrolls().city()),
                     faker.pokemon().name()
             );
+            album.setSpecialStickers(faker.number().numberBetween(0, 5));
+            return album;
         } catch (IllegalArgumentException e) {
             return createAlbum();
         }
