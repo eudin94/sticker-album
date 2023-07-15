@@ -107,13 +107,13 @@ public class DAORunner {
             final var sampleAlbum = albums.get(random.nextInt(albums.size()));
             log.warn("STICKER-getStickersByAlbum[" + sampleAlbum.getId() + "." + sampleAlbum.getName() + "]");
             stickerDAO.getStickersByAlbum(sampleAlbum).forEach(
-                    sticker -> log.info("STICKER-getStickersByAlbum\n" + sticker)
+                    sticker -> log.info("\n" + sticker)
             );
 
             albums.forEach(album -> {
                 log.warn("STICKER-getStickersByAlbumAndTeam[" + album.getId() + "." + album.getName() + "]");
                 stickerDAO.getStickersByAlbumAndTeam(album, stickers.get(randomIndex).getTeam()).forEach(
-                        sticker -> log.info("STICKER-getStickersByAlbum\n" + sticker)
+                        sticker -> log.info("\n" + sticker)
                 );
             });
         };
